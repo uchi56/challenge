@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Encriptador de texto</title>
+        <link rel="stylesheet" href="reset.css">
+        <link rel="stylesheet" href="challenge.css">
+        <script>
+            function encriptar() {
+                let mensaje = document.getElementById("texto").value;
+                let mensajeEncriptado = "";
+                if (mensaje.trim() !==""){
+                    let divisionDeMensaje=mensaje.split("");
+
+                    for(var posicion = 0;posicion<divisionDeMensaje.length;posicion++){
+                        let letra = divisionDeMensaje[posicion];
+                        if (letra == "a") {
+                            mensajeEncriptado = mensajeEncriptado + "ai";
+                        } else if(letra == "e") {
+                            mensajeEncriptado = mensajeEncriptado + "enter";
+                        } else if(letra == "i") {
+                            mensajeEncriptado = mensajeEncriptado + "imes";
+                        } else if(letra == "o") {
+                            mensajeEncriptado = mensajeEncriptado + "ober";
+                        } else if(letra == "u") {
+                            mensajeEncriptado = mensajeEncriptado + "ufat";
+                        } else  {
+                            mensajeEncriptado = mensajeEncriptado + divisionDeMensaje[posicion];
+                        }
+                    }
+                 
+                document.getElementById("texto2").innerHTML= "<span id='texto3'>"+mensajeEncriptado+"</span>"
+                }
+            }
+            function desencriptar(){
+                let mensaje = document.getElementById("texto").value;
+                let mensajeEncriptado = document.getElementById("texto").value;
+                if (mensaje.trim() !==""){
+                    if (mensajeEncriptado.includes("ai")) {
+                        mensajeEncriptado=mensajeEncriptado.replace(/ai/g,"a");
+                    }   
+                    if(mensajeEncriptado.includes ("enter")) {
+                        mensajeEncriptado=mensajeEncriptado.replace(/enter/g,"e");
+                    }   
+                    if(mensajeEncriptado.includes ("imes")) {
+                        mensajeEncriptado=mensajeEncriptado.replace(/imes/g,"i");
+                    }   
+                    if(mensajeEncriptado.includes ("ober")) {
+                        mensajeEncriptado=mensajeEncriptado.replace(/ober/g,"o");
+                    }   
+                    if(mensajeEncriptado.includes ("ufat")) {
+                        mensajeEncriptado=mensajeEncriptado.replace(/ufat/g,"u");
+                    }   
+                    
+                document.getElementById("texto2").innerHTML= "<span id='texto3'>"+mensajeEncriptado+"</span>"
+               }
+            }
+
+            function copyToClipBoard() {
+                var mensaje = document.getElementById("texto3").innerHTML;
+                navigator.clipboard.writeText(mensaje);
+            }
+           
+        </script>
+    </head>
+    <body>
+        <header>
+            <img src="imagenes/Logo.png">
+        </header>
+        <main>
+            <textarea class="cuadro-texto" id="texto" required rows="15" placeholder="Ingresa tu texto aquí"  cols="50" autofocus></textarea>
+            <div class="botones">
+                <button onclick="encriptar()" class="boton-encriptar">Encriptar texto</button>
+                <button onclick="desencriptar()" class="boton-desencriptar">Desencriptar texto</button>
+            </div>
+            <p class="asterisco"> &#42 solo letras minúsculas y sin tilde</p>
+            <div class="cuadro-resultado"> 
+                <div id="texto2" class="texto-rectangulo">
+                    <img src="imagenes/Muñeco.png">
+                    <h2>Ningún texto fue encontrado</h2>
+                    <p>Ingresa el texto que desees encriptar o desencriptar</p>
+                </div>
+                <button id="botonCopiar" onclick="copyToClipBoard()">Copiar</button> 
+            </div>
+        </main>
+        <footer class="footer">
+            <p class="footertexto">&#42 Este encriptador fue desarrollado por Lucía Díaz Ramírez &#42</p>
+            <p class="footeraño">Alura Latam-2023</p>
+        </footer>
+    </body>
+
+</html>
